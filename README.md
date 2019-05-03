@@ -1,2 +1,2 @@
-# twisep
-Projet pour le cours techno web
+# Twisep
+My boilerplate for a Golang web API
