@@ -1,6 +1,8 @@
 package routes
 
 import (
+	"go-api-boilerplate/controllers"
+	"go-api-boilerplate/middlewares"
 	"net/http"
 )
 
@@ -13,14 +15,12 @@ type route struct {
 
 type routes []route
 
-var scheme = routes{
-	// route{
-	// 	"admin login page get",
-	// 	"GET",
-	// 	"/login",
-	// 	controllers.
-	// 		LogMiddleware(controllers.
-	// 			AdminRedirectMiddleware(&controllers.AdminLogin{})),
-	// }
-
+var Scheme = routes{
+	route{
+		"Hello, World !",
+		"GET",
+		"/",
+		middlewares.
+			LogMiddleware(&controllers.HelloWorld{}),
+	},
 }

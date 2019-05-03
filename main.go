@@ -1,14 +1,12 @@
 package main
 
 import (
+	"go-api-boilerplate/config"
+	"go-api-boilerplate/routes"
 	"log"
 	"net/http"
-	"twisep/config"
-	"twisep/controllers"
 
 	"github.com/gorilla/mux"
-
-	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 func init() {
@@ -16,7 +14,7 @@ func init() {
 }
 
 func main() {
-	var err error
+	// var err error
 	// var f *os.File
 	// f, err := os.OpenFile("/var/log/api_name.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	// if err != nil {
@@ -32,13 +30,13 @@ func main() {
 
 	router.StrictSlash(false)
 	// Serve static assets
-	fileServer := http.FileServer(http.Dir("public"))
-	http.Handle("/static/", http.StripPrefix("/public/", controllers.StaticBlockMiddleware(fileServer)))
+	// fileServer := http.FileServer(http.Dir("public"))
+	// http.Handle("/static/", http.StripPrefix("/public/", controllers.StaticBlockMiddleware(fileServer)))
 
 	// TODO: DATABASE CONNECTION
 
 	// Import all the api endpoints
-	for _, route := range scheme {
+	for _, route := range routes.Scheme {
 		router.Methods(route.Method).
 			Path(route.Pattern).
 			Name(route.Name).
