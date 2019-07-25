@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    links:
+      - db
+    volumes:
+      - .:/usr/src/app
+  db:
+    image: mariadb
+    restart: always
+    volumes:
+      - /opt/tp3:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: dbname
+    ports:
+      - "3306:3306" 
